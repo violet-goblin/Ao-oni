@@ -15,7 +15,6 @@ public class Application {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         Opening opening = new Opening();
-        opening.runGame();
         while (true){
             opening.runGame();
             int num = Integer.valueOf(br.readLine());
@@ -51,6 +50,25 @@ public class Application {
     private static void playGame() {
         System.out.println("게임을 실행 합니다.");
         PlayerService ps = new PlayerService();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while(true){
+            String input = br.readLine().toLowerCase();
+            switch (input){
+                case "w":
+                    ps.pressKeyW();
+                    break;
+                case "s":
+                    ps.pressKeyS();
+                    break;
+                case "a":
+                    ps.pressKeyA();
+                    break;
+                case "d":
+                    ps.pressKeyD();
+                    break;
+            }
+
+        }
 
     }
 }

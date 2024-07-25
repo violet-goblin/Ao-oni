@@ -1,7 +1,7 @@
 package org.violetgoblin.violetgoblin.vue.room;
 
-public class StoreRoom2F {
-    static String[][] room = {{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
+public class StoreRoom2F implements Room {
+    private String[][] room = {{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
@@ -13,4 +13,17 @@ public class StoreRoom2F {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
     int[][] door = new int[][]{{5, 0}};
+
+    @Override
+    public void moveRoom() {
+
+    }
+
+    public String[][] getRoom() {
+        return room;
+    }
+
+    public void setRoom(String[][] room) {
+        this.room = room;
+    }
 }
