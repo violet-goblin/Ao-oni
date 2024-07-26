@@ -15,16 +15,9 @@ public class GuestRoom2F implements Room {
 
     int[][] door = new int[][]{{10, 5}, {0, 5}, {5, 0}, {5, 10}};
 
+
     @Override
-    public void moveRoom() {
-
-    }
-
     public String[][] getRoom() {
-        return room;
-    }
-
-    public void setRoom(String[][] room) {
-        this.room = room;
+        return this.room;
     }
 }

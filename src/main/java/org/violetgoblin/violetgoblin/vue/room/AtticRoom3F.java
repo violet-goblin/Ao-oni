@@ -18,15 +18,7 @@ public class AtticRoom3F implements Room {
 
 
     @Override
-    public void moveRoom() {
-
-    }
-
     public String[][] getRoom() {
-        return room;
-    }
-
-    public void setRoom(String[][] room) {
-        this.room = room;
+        return this.room;
     }
 }

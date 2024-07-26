@@ -15,15 +15,7 @@ public class SecretRoom3F implements Room {
     int[][] door = new int[][]{{5, 0}};
 
     @Override
-    public void moveRoom() {
-
-    }
-
     public String[][] getRoom() {
-        return room;
-    }
-
-    public void setRoom(String[][] room) {
-        this.room = room;
+        return this.room;
     }
 }
