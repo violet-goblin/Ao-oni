@@ -13,9 +13,6 @@ public class GuestRoom2F implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "ㅁ", "#", "#", "#", "#", "#"}};
 
-    int[][] door = new int[][]{{10, 5}, {0, 5}, {5, 0}, {5, 10}};
-
-
     @Override
     public String[][] getRoom() {
         return this.room;

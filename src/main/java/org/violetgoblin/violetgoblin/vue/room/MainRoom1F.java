@@ -12,7 +12,6 @@ public class MainRoom1F implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
-    int[][] door = new int[][]{{5, 10}};
 
     @Override
     public String[][] getRoom() {

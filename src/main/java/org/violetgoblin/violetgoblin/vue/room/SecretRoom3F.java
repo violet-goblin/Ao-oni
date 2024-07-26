@@ -12,7 +12,6 @@ public class SecretRoom3F implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
-    int[][] door = new int[][]{{5, 0}};
 
     @Override
     public String[][] getRoom() {

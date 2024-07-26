@@ -12,8 +12,6 @@ public class LaboratoryRoomB1 implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
-    int[][] door = new int[][]{{5, 10}};
-
 
     @Override
     public String[][] getRoom() {

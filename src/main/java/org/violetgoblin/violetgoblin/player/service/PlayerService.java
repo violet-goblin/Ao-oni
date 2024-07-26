@@ -26,7 +26,7 @@ public class PlayerService {
     /* 맵 그리기 */
     private static void showMap(String[][] map) {
         System.out.println("=====================");
-        System.out.println(roomName);
+        System.out.println(roomName + "(0: 메뉴로 돌아가기)");
         System.out.println("=====================");
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
@@ -36,6 +36,7 @@ public class PlayerService {
         }
     }
 
+    /* 문 체크용 */
     private boolean checkDoor(int[] tmpLoc) {
         if (room.getRoom()[tmpLoc[0]][tmpLoc[1]].equals("ㅁ")) {
             map[loc[0]][loc[1]] = " ";
@@ -46,17 +47,14 @@ public class PlayerService {
         }
     }
 
-    private void nextRoom(int[] tmpLoc) {
-        // 다음 방 선언해야함. like
-        checkRoom(tmpLoc);
-    }
-
+    /* 한칸 움직일 때 사용 */
     private void moveLoc(int[] tmpLoc) {
         map[loc[0]][loc[1]] = " ";
         loc[0] = tmpLoc[0];
         loc[1] = tmpLoc[1];
     }
 
+    /* 벽인지 체크 */
     private boolean checkWall(int[] tmpLoc) {
         if (room.getRoom()[tmpLoc[0]][tmpLoc[1]].equals("#")) {
             return false;   // 벽 이야.
@@ -66,7 +64,6 @@ public class PlayerService {
     }
 
     /* 버튼 W눌렀을 경우*/
-
     public void pressKeyW() {
         int[] tmpLoc = {loc[0] - 1, loc[1]};
 
@@ -82,8 +79,8 @@ public class PlayerService {
         map[loc[0]][loc[1]] = "P";
         showMap(map);
     }
-    /* 버튼 S눌렀을 경우*/
 
+    /* 버튼 S눌렀을 경우*/
     public void pressKeyS() {
         int[] tmpLoc = {loc[0] + 1, loc[1]};
 
@@ -99,8 +96,8 @@ public class PlayerService {
         map[loc[0]][loc[1]] = "P";
         showMap(map);
     }
-    /* 버튼 A눌렀을 경우*/
 
+    /* 버튼 A눌렀을 경우*/
     public void pressKeyA() {
         int[] tmpLoc = {loc[0], loc[1] - 1};
 
@@ -116,8 +113,8 @@ public class PlayerService {
         map[loc[0]][loc[1]] = "P";
         showMap(map);
     }
-    /* 버튼 D눌렀을 경우*/
 
+    /* 버튼 D눌렀을 경우*/
     public void pressKeyD() {
         int[] tmpLoc = {loc[0], loc[1] + 1};
 
@@ -134,8 +131,8 @@ public class PlayerService {
         showMap(map);
     }
 
-
-    private void checkRoom(int[] tmpLoc) {
+    /* 다음 방으로 넘어가게 해주는 곳 */
+    private void nextRoom(int[] tmpLoc) {
         if (room instanceof MasterRoom1F) {
             String l = tmpLoc[0] + "-" + tmpLoc[1];
             switch (l) {

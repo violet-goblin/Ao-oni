@@ -12,8 +12,6 @@ public class TerraceRoom2F implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
-    int[][] door = new int[][]{{5, 0}};
-
 
     @Override
     public String[][] getRoom() {

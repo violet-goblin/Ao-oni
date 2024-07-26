@@ -12,7 +12,6 @@ public class HallwayRoomB1 implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}};
-    int[][] door = new int[][]{{5, 10}, {0, 5}, {5, 0}};
 
     @Override
     public String[][] getRoom() {

@@ -13,10 +13,6 @@ public class AtticRoom3F implements Room {
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", "#", "#", "#", "#", "ㅁ", "#", "#", "#", "#", "#"}};
 
-    int[][] door = new int[][]{{5, 10}, {10, 5}};
-                            // AtticRoom3F, GuestRoom
-
-
     @Override
     public String[][] getRoom() {
         return this.room;

@@ -14,7 +14,8 @@ public class Application {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        Opening opening = new Opening();
+        Opening opening = new Opening();   // 오프닝 메세지 출력
+        /* 메뉴 값 입력 받기 */
         while (true){
             opening.runGame();
             int num = Integer.valueOf(br.readLine());
@@ -33,20 +34,9 @@ public class Application {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
+    /* 게임 시작하면  */
     private static void playGame() throws IOException {
         System.out.println("게임을 실행 합니다.");
         PlayerService ps = new PlayerService();
@@ -65,6 +55,10 @@ public class Application {
                     break;
                 case "d":
                     ps.pressKeyD();
+                    break;
+                case "0":
+                    System.out.println("메뉴로 돌아갑니다.");
+                    return;
             }
 
         }
