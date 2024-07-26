@@ -47,7 +47,7 @@ public class Application {
 
     }
 
-    private static void playGame() {
+    private static void playGame() throws IOException {
         System.out.println("게임을 실행 합니다.");
         PlayerService ps = new PlayerService();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -65,7 +65,6 @@ public class Application {
                     break;
                 case "d":
                     ps.pressKeyD();
-                    break;
             }
 
         }

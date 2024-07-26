@@ -19,8 +19,9 @@ public class MasterRoom1F implements Room {
 
     }
 
+    @Override
     public String[][] getRoom() {
-        return room;
+        return this.room;
     }
 
     public void setRoom(String[][] room) {
