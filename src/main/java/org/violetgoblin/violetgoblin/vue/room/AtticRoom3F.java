@@ -3,7 +3,7 @@ package org.violetgoblin.violetgoblin.vue.room;
 import org.violetgoblin.violetgoblin.player.aggregate.RoomObj;
 
 public class AtticRoom3F implements Room {
-    private String[][] room = {{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
+    private final String[][] room = {{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
