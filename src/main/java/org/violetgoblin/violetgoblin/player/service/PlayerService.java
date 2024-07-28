@@ -28,9 +28,9 @@ public class PlayerService {
         System.out.println("=====================");
         System.out.println(roomName + "(0: 메뉴로 돌아가기)");
         System.out.println("=====================");
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                System.out.print(map[i][j] + " ");
+        for (String[] strings : map) {
+            for (String string : strings) {
+                System.out.print(string + " ");
             }
             System.out.println();
         }
@@ -56,14 +56,11 @@ public class PlayerService {
 
     /* 벽인지 체크 */
     private boolean checkWall(int[] tmpLoc) {
-        if (room.getRoom()[tmpLoc[0]][tmpLoc[1]].equals("#")) {
-            return false;   // 벽 이야.
-        } else {
-            return true;    // 벽 아니야.
-        }
+        // 벽 O -> return false, 벽 X -> return true
+        return !room.getRoom()[tmpLoc[0]][tmpLoc[1]].equals("#");
     }
 
-    /* 버튼 W눌렀을 경우*/
+    /* 버튼 'W' 눌렀을 경우*/
     public void pressKeyW() {
         int[] tmpLoc = {loc[0] - 1, loc[1]};
 
@@ -80,7 +77,7 @@ public class PlayerService {
         showMap(map);
     }
 
-    /* 버튼 S눌렀을 경우*/
+    /* 버튼 'S' 눌렀을 경우*/
     public void pressKeyS() {
         int[] tmpLoc = {loc[0] + 1, loc[1]};
 
@@ -97,7 +94,7 @@ public class PlayerService {
         showMap(map);
     }
 
-    /* 버튼 A눌렀을 경우*/
+    /* 버튼 'A' 눌렀을 경우*/
     public void pressKeyA() {
         int[] tmpLoc = {loc[0], loc[1] - 1};
 
@@ -114,7 +111,7 @@ public class PlayerService {
         showMap(map);
     }
 
-    /* 버튼 D눌렀을 경우*/
+    /* 버튼 'D' 눌렀을 경우*/
     public void pressKeyD() {
         int[] tmpLoc = {loc[0], loc[1] + 1};
 
@@ -131,175 +128,248 @@ public class PlayerService {
         showMap(map);
     }
 
-    /* 다음 방으로 넘어가게 해주는 곳 */
+    /* 다음 방 설정 */
     private void nextRoom(int[] tmpLoc) {
+        String l = tmpLoc[0] + "-" + tmpLoc[1];
         if (room instanceof MasterRoom1F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new KichenRoom1F();
-                    roomName = "Kichen Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-                case "0-5":
-                    room = new GuestRoom2F();
-                    roomName = "Guest Room";
-                    loc[0] = 9;
-                    loc[1] = 5;
-                    break;
-                case "5-0":
-                    room = new MainRoom1F();
-                    roomName = "Main Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-                case "10-5":
-                    room = new HallwayRoomB1();
-                    roomName = "Hallway Room";
-                    loc[0] = 1;
-                    loc[1] = 5;
-                    break;
-            }
+            changeMasterRoom1F(l);
         } else if (room instanceof MainRoom1F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new MasterRoom1F();
-                    roomName = "Master Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-            }
-        } else if (room instanceof KichenRoom1F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-0":
-                    room = new MasterRoom1F();
-                    roomName = "Master Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-
-            }
+            changeMainRoom1F(l);
+        } else if (room instanceof KitchenRoom1F) {
+            changeKitchenRoom1F(l);
         } else if (room instanceof LaboratoryRoomB1) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new HallwayRoomB1();
-                    roomName = "Hallway Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-            }
+            changeLaboratoryRoomB1(l);
         } else if (room instanceof HallwayRoomB1) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new TortureRoomB1();
-                    roomName = "Torture Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-                case "0-5":
-                    room = new MasterRoom1F();
-                    roomName = "Master Room";
-                    loc[0] = 9;
-                    loc[1] = 5;
-                    break;
-                case "5-0":
-                    room = new LaboratoryRoomB1();
-                    roomName = "Laboratory Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-            }
+            changeHallwayRoomB1(l);
         } else if (room instanceof TortureRoomB1) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-0":
-                    room = new HallwayRoomB1();
-                    roomName = "Hallway Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-            }
+            changeTortureRoomB1(l);
         } else if (room instanceof StoreRoom2F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new GuestRoom2F();
-                    roomName = "Guest Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-            }
+            changeStoreRoom2F(l);
         } else if (room instanceof GuestRoom2F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new TerraceRoom2F();
-                    roomName = "Terrace Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-                case "0-5":
-                    room = new AtticRoom3F();
-                    roomName = "Attic Room";
-                    loc[0] = 9;
-                    loc[1] = 5;
-                    break;
-                case "5-0":
-                    room = new StoreRoom2F();
-                    roomName = "Store Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-                case "10-5":
-                    room = new MasterRoom1F();
-                    roomName = "Master Room";
-                    loc[0] = 1;
-                    loc[1] = 5;
-                    break;
-            }
+            changeGuestRoom2F(l);
         } else if (room instanceof TerraceRoom2F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-0":
-                    room = new GuestRoom2F();
-                    roomName = "Guest Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
-            }
+            changeTerraceRoom2F(l);
         } else if (room instanceof AtticRoom3F) {
-
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-10":
-                    room = new SecretRoom3F();
-                    roomName = "Secret Room";
-                    loc[0] = 5;
-                    loc[1] = 1;
-                    break;
-                case "10-5":
-                    room = new GuestRoom2F();
-                    roomName = "Guest Room";
-                    loc[0] = 1;
-                    loc[1] = 5;
-                    break;
-            }
+            changeAtticRoom3F(l);
         } else if (room instanceof SecretRoom3F) {
-            String l = tmpLoc[0] + "-" + tmpLoc[1];
-            switch (l) {
-                case "5-0":
-                    room = new AtticRoom3F();
-                    roomName = "Attic Room";
-                    loc[0] = 5;
-                    loc[1] = 9;
-                    break;
+            changeSecretRoom3F(l);
+        }
+    }
 
-            }
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+    /* 궁금. 왜 이건 jck 17에선 안되누..*/
+//    private void nextRoom(int[] tmpLoc) {
+//        String l = tmpLoc[0] + "-" + tmpLoc[1];
+//        switch (room) {
+//            case MasterRoom1F m -> {
+//                changeMasterRoom1F(l);
+//            }
+//            case MainRoom1F m -> {
+//                changeMainRoom1F(l);
+//            }
+//            case KitchenRoom1F m -> {
+//                changeKitchenRoom1F(l);
+//            }
+//            case LaboratoryRoomB1 m -> {
+//                changeLaboratoryRoomB1(l);
+//            }
+//            case HallwayRoomB1 m -> {
+//                changeHallwayRoomB1(l);
+//            }
+//            case TortureRoomB1 m -> {
+//                changeTortureRoomB1(l);
+//            }
+//            case StoreRoom2F m -> {
+//                changeStoreRoom2F(l);
+//            }
+//            case GuestRoom2F m -> {
+//                changeGuestRoom2F(l);
+//            }
+//            case TerraceRoom2F m -> {
+//                changeTerraceRoom2F(l);
+//            }
+//            case AtticRoom3F m -> {
+//                changeAtticRoom3F(l);
+//            }
+//            case SecretRoom3F m -> {
+//                changeSecretRoom3F(l);
+//            }
+//        }
+//    }
+    /* 다음 방 선언 */
+    private void changeSecretRoom3F(String l) {
+        if (l.equals("5-0")) {
+            room = new AtticRoom3F();
+            roomName = "Attic Room";
+            loc[0] = 5;
+            loc[1] = 9;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeAtticRoom3F(String l) {
+        switch (l) {
+            case "5-10":
+                room = new SecretRoom3F();
+                roomName = "Secret Room";
+                loc[0] = 5;
+                loc[1] = 1;
+                break;
+            case "10-5":
+                room = new GuestRoom2F();
+                roomName = "Guest Room";
+                loc[0] = 1;
+                loc[1] = 5;
+                break;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeTerraceRoom2F(String l) {
+        if (l.equals("5-0")) {
+            room = new GuestRoom2F();
+            roomName = "Guest Room";
+            loc[0] = 5;
+            loc[1] = 9;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeGuestRoom2F(String l) {
+        switch (l) {
+            case "5-10":
+                room = new TerraceRoom2F();
+                roomName = "Terrace Room";
+                loc[0] = 5;
+                loc[1] = 1;
+                break;
+            case "0-5":
+                room = new AtticRoom3F();
+                roomName = "Attic Room";
+                loc[0] = 9;
+                loc[1] = 5;
+                break;
+            case "5-0":
+                room = new StoreRoom2F();
+                roomName = "Store Room";
+                loc[0] = 5;
+                loc[1] = 9;
+                break;
+            case "10-5":
+                room = new MasterRoom1F();
+                roomName = "Master Room";
+                loc[0] = 1;
+                loc[1] = 5;
+                break;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeStoreRoom2F(String l) {
+        if (l.equals("5-10")) {
+            room = new GuestRoom2F();
+            roomName = "Guest Room";
+            loc[0] = 5;
+            loc[1] = 1;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeTortureRoomB1(String l) {
+        if (l.equals("5-0")) {
+            room = new HallwayRoomB1();
+            roomName = "Hallway Room";
+            loc[0] = 5;
+            loc[1] = 9;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeHallwayRoomB1(String l) {
+        switch (l) {
+            case "5-10":
+                room = new TortureRoomB1();
+                roomName = "Torture Room";
+                loc[0] = 5;
+                loc[1] = 1;
+                break;
+            case "0-5":
+                room = new MasterRoom1F();
+                roomName = "Master Room";
+                loc[0] = 9;
+                loc[1] = 5;
+                break;
+            case "5-0":
+                room = new LaboratoryRoomB1();
+                roomName = "Laboratory Room";
+                loc[0] = 5;
+                loc[1] = 9;
+                break;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeLaboratoryRoomB1(String l) {
+        if (l.equals("5-10")) {
+            room = new HallwayRoomB1();
+            roomName = "Hallway Room";
+            loc[0] = 5;
+            loc[1] = 1;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeKitchenRoom1F(String l) {
+        if (l.equals("5-0")) {
+            room = new MasterRoom1F();
+            roomName = "Master Room";
+            loc[0] = 5;
+            loc[1] = 9;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeMainRoom1F(String l) {
+        if (l.equals("5-10")) {
+            room = new MasterRoom1F();
+            roomName = "Master Room";
+            loc[0] = 5;
+            loc[1] = 1;
+        }
+    }
+
+    /* 다음 방 선언 */
+    private void changeMasterRoom1F(String l) {
+        switch (l) {
+            case "5-10":
+                room = new KitchenRoom1F();
+                roomName = "Kichen Room";
+                loc[0] = 5;
+                loc[1] = 1;
+                break;
+            case "0-5":
+                room = new GuestRoom2F();
+                roomName = "Guest Room";
+                loc[0] = 9;
+                loc[1] = 5;
+                break;
+            case "5-0":
+                room = new MainRoom1F();
+                roomName = "Main Room";
+                loc[0] = 5;
+                loc[1] = 9;
+                break;
+            case "10-5":
+                room = new HallwayRoomB1();
+                roomName = "Hallway Room";
+                loc[0] = 1;
+                loc[1] = 5;
+                break;
         }
     }
 }

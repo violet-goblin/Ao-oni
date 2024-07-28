@@ -1,6 +1,6 @@
 package org.violetgoblin.violetgoblin.vue.room;
 
-public class KichenRoom1F implements Room {
+public class KitchenRoom1F implements Room {
     private String[][] room = {{"#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
             , {"#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"}
