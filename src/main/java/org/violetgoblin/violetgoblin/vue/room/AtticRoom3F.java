@@ -25,10 +25,10 @@ public class AtticRoom3F implements Room {
         return "Attic Room(3F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.ATTIC_ROOM_3F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.ATTIC_ROOM_3F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

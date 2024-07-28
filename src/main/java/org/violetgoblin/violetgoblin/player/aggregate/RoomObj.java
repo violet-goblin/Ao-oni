@@ -2,6 +2,8 @@ package org.violetgoblin.violetgoblin.player.aggregate;
 
 import org.violetgoblin.violetgoblin.vue.room.Room;
 
+import java.util.Arrays;
+
 public class RoomObj {
     private Room room;
     private String roomName;
@@ -42,5 +44,14 @@ public class RoomObj {
 
     public int[] getLoc() {
         return loc;
+    }
+
+    @Override
+    public String toString() {
+        return "RoomObj{" +
+                "room=" + room +
+                ", roomName='" + roomName + '\'' +
+                ", loc=" + Arrays.toString(loc) +
+                '}';
     }
 }

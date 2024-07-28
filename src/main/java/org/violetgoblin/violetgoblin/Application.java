@@ -16,10 +16,10 @@ public class Application {
 
         Opening opening = new Opening();   // 오프닝 메세지 출력
         /* 메뉴 값 입력 받기 */
-        while (true){
+        while (true) {
             opening.runGame();
             int num = Integer.valueOf(br.readLine());
-            switch (num){
+            switch (num) {
                 case 1:
                     playGame();
                     break;
@@ -33,7 +33,6 @@ public class Application {
         }
 
 
-
     }
 
     /* 게임 시작하면  */
@@ -41,20 +40,32 @@ public class Application {
         System.out.println("게임을 실행 합니다.");
         PlayerService ps = new PlayerService();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while(true){
+        while (true) {
             String input = br.readLine().toLowerCase();
-            switch (input){
+            switch (input) {
                 case "w":
-                    ps.pressKeyW();
+                    if (ps.pressKeyW()) {
+                        System.out.println("Game Over");
+                        return;
+                    }
                     break;
                 case "s":
-                    ps.pressKeyS();
+                    if (ps.pressKeyS()) {
+                        System.out.println("Game Over");
+                        return;
+                    }
                     break;
                 case "a":
-                    ps.pressKeyA();
+                    if (ps.pressKeyA()) {
+                        System.out.println("Game Over");
+                        return;
+                    }
                     break;
                 case "d":
-                    ps.pressKeyD();
+                    if (ps.pressKeyD()) {
+                        System.out.println("Game Over");
+                        return;
+                    }
                     break;
                 case "0":
                     System.out.println("메뉴로 돌아갑니다.");

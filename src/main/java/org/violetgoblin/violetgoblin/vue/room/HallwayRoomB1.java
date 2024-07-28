@@ -25,10 +25,10 @@ public class HallwayRoomB1 implements Room {
         return "Hallway Room(B1)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.HALLWAY_ROOM_B1;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.HALLWAY_ROOM_B1;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

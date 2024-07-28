@@ -25,10 +25,10 @@ public class SecretRoom3F implements Room {
         return "Secret Room(3F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.SECRET_ROOM_3F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.SECRET_ROOM_3F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

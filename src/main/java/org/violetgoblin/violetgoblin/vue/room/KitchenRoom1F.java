@@ -25,10 +25,10 @@ public class KitchenRoom1F implements Room {
         return "Kitchen Room(1F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.KITCHEN_ROOM_1F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.KITCHEN_ROOM_1F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

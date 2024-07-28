@@ -25,10 +25,10 @@ public class StoreRoom2F implements Room {
         return "Store Room(2F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.STORE_ROOM_2F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.STORE_ROOM_2F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

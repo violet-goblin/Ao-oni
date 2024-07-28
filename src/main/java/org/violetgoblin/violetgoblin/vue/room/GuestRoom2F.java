@@ -25,10 +25,10 @@ public class GuestRoom2F implements Room {
         return "Guest Room(2F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.GUEST_ROOM_2F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.GUEST_ROOM_2F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

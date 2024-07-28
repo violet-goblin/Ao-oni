@@ -25,10 +25,10 @@ public class MainRoom1F implements Room {
         return "Main Room(1F)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.MAIN_ROOM_1F;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.MAIN_ROOM_1F;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {

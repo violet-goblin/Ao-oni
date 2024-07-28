@@ -25,10 +25,10 @@ public class TortureRoomB1 implements Room {
         return "Torture Room(B1)";
     }
 
-    @Override
-    public RoomType getRoomType() {
-        return RoomType.TORTURE_ROOM_B1;
-    }
+//    @Override
+//    public RoomType getRoomType() {
+//        return RoomType.TORTURE_ROOM_B1;
+//    }
 
     @Override
     public RoomObj changeRoom(String curDoor, RoomObj roomObj) {
