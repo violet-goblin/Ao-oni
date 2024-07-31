@@ -7,14 +7,14 @@ import java.util.Scanner;
 public class Application {
 
     /* 설명. Room 메모리 할당 */
-    private static final Room room = new Room();
+//    private static final Room room = new Room();
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         /* 설명. 초기화 (1층 마스터 시작, 플레이어 시작 위치 지정) */
         char[][] printMap = new char[11][11];
-        printMap = room.getFirstFloorCenterMasterRoom();
+//        printMap = room.getFirstFloorCenterMasterRoom();
         int currentRow = 5, currentCol = 9;
         /* 설명. 움직일 위치 지정 */
         int moveRow = 0, moveCol = 0;
