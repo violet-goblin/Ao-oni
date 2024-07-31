@@ -13,9 +13,9 @@ public class RightRoom implements Room{
     }
 
     @Override
-    public void createMap(String[][] setRoom) {
+    public String[][] createMap() {
         int mapSizeR = Room.mapSize;
-        setRoom = new String[mapSizeR][mapSizeR];
+        String[][] setRoom = new String[mapSizeR][mapSizeR];
 
         for(int i=0; i<mapSizeR; i++){
             for(int j=0; j<mapSizeR; j++){
@@ -28,6 +28,17 @@ public class RightRoom implements Room{
                 if(i==0 || j==0 || i== mapSizeR -1 || j == mapSizeR -1){
                     setRoom[i][j] = "*";
                 }
+            }
+            System.out.println();
+        }
+        return setRoom;
+    }
+
+    @Override
+    public void printMap(String[][] map) {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                System.out.print(map[i][j]);
             }
             System.out.println();
         }

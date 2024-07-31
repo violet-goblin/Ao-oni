@@ -13,9 +13,9 @@ public class LeftRoom implements Room {
     }
 
     @Override
-    public void createMap(String[][] setRoom) {
+    public String[][] createMap() {
         int mapSizeL = Room.mapSize;
-        setRoom = new String[mapSizeL][mapSizeL];
+        String[][] setRoom = new String[mapSizeL][mapSizeL];
 
         for(int i=0; i<mapSizeL; i++){
             for(int j=0; j<mapSizeL; j++){
@@ -29,6 +29,17 @@ public class LeftRoom implements Room {
                     setRoom[i][j] = "*";
                 }
            }
+        }
+        return setRoom;
+    }
+
+    @Override
+    public void printMap(String[][] map) {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                System.out.print(map[i][j]);
+            }
+            System.out.println();
         }
     }
 }

@@ -4,6 +4,8 @@ package org.twovarchar.violoetGoblin.Room;
 
 public class AtticRoom implements Room {
 
+
+
     private static int floor = 3;
     private char roomState = 'c';
 
@@ -28,9 +30,9 @@ public class AtticRoom implements Room {
     }
     
     @Override
-    public void createMap(String[][] setRoom) {
+    public String[][] createMap() {
         int mapSizeC = Room.mapSize;
-        setRoom = new String[mapSizeC][mapSizeC];
+        String[][] setRoom = new String[mapSizeC][mapSizeC];
 
         for(int i=0; i<mapSizeC; i++){
             for(int j=0; j<mapSizeC; j++){
@@ -43,6 +45,16 @@ public class AtticRoom implements Room {
                 if(i==0 || j==0 || i== mapSizeC -1 || j == mapSizeC -1){
                     setRoom[i][j] = "*";
                 }
+            }
+        }
+        return setRoom;
+    }
+
+    @Override
+    public void printMap(String[][] map) {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                System.out.print(map[i][j]);
             }
             System.out.println();
         }
