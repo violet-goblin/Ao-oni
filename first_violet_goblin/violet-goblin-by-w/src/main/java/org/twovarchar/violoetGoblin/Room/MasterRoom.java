@@ -13,6 +13,16 @@ public class MasterRoom implements Room {
     }
 
     @Override
+    public char getRoomState() {
+        return 0;
+    }
+
+    @Override
+    public void setRoomState(char state) {
+
+    }
+
+    @Override
     public String[][] createMap() {
         int mapSizeC = Room.mapSize;
         String[][] setRoom = new String[mapSizeC][mapSizeC];
@@ -35,13 +45,5 @@ public class MasterRoom implements Room {
         return setRoom;
     }
 
-    @Override
-    public void printMap(String[][] map) {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
-    }
+
 }

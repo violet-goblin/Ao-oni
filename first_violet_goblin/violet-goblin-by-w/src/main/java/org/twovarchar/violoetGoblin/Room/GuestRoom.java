@@ -2,15 +2,15 @@ package org.twovarchar.violoetGoblin.Room;
 
 public class GuestRoom implements Room {
 
-    private static int floor = 2;
-    private static char roomState = 'c';
+    private int floor = 2;
+    private char roomState = 'c';
 
-    public static char getRoomState() {
+    public char getRoomState() {
         return roomState;
     }
 
-    public static void setRoomState(char roomState) {
-        GuestRoom.roomState = roomState;
+    public void setRoomState(char roomState) {
+        this.roomState = roomState;
     }
 
     public int getFloor() {
@@ -43,13 +43,4 @@ public class GuestRoom implements Room {
         return setRoom;
     }
 
-    @Override
-    public void printMap(String[][] map) {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
-    }
 }

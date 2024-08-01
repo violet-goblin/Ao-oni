@@ -26,20 +26,23 @@ public class LeftRoom implements Room {
                 }
                 /* 설명. 테두리 설정 */
                 if(i==0 || j==0 || i== mapSizeL -1 || j == mapSizeL -1){
-                    setRoom[i][j] = "*";
+                    setRoom[i][j] = "#";
                 }
+                else
+                    setRoom[i][j] = "*";
            }
         }
         return setRoom;
     }
 
     @Override
-    public void printMap(String[][] map) {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
+    public int getFloor() {
+        return 0;
     }
+
+    @Override
+    public void setFloor(int floor) {
+
+    }
+
 }

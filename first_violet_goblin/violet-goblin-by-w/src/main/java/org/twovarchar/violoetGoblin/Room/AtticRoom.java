@@ -4,9 +4,7 @@ package org.twovarchar.violoetGoblin.Room;
 
 public class AtticRoom implements Room {
 
-
-
-    private static int floor = 3;
+    private int floor = 3;
     private char roomState = 'c';
 
     public char getRoomState() {
@@ -22,7 +20,7 @@ public class AtticRoom implements Room {
     }
 
     public void setFloor(int floor) {
-        AtticRoom.floor = floor;
+        this.floor = floor;
     }
     
     public AtticRoom() {
@@ -43,20 +41,13 @@ public class AtticRoom implements Room {
                 }
                 /* 설명. 테두리 설정 */
                 if(i==0 || j==0 || i== mapSizeC -1 || j == mapSizeC -1){
-                    setRoom[i][j] = "*";
+                    setRoom[i][j] = "#";
                 }
+                else
+                    setRoom[i][j] = "*";
             }
         }
         return setRoom;
     }
 
-    @Override
-    public void printMap(String[][] map) {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
-    }
 }

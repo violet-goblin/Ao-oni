@@ -20,50 +20,42 @@ public class Application {
          * **************************************
          *
         * */
-
         /* 설명. (press 'q') 게임 시작 (1층 마스터 시작, 플레이어 시작 위치 지정) */
-        ps.initGame();
-//        /* 설명. 움직일 위치 지정 */
-//        char input;
-//        /* 설명. 첫 시작.*/
-//
-//        /* 1. Opening script 출력 */
-//
-//        /* 2. 시작. 종료 시 command 지정해야함 */
-//        while(true){
-//            /* 설명. 플레이어가 현재 서 있는 위치 포함 맵 출력 */
-//            for(int i = 0; i<printMap.length; i++){
-//                for(int j = 0; j<printMap[0].length; j++){
-//                    if(i == currentRow && j == currentCol){
-//                        printMap[i][j] = 'P';
-//                    }
-//                    System.out.println(printMap[i][j]);
-//                }
-//            }
-//            /* 설명. 입력받기 */
-//            input = sc.next().charAt(0);
-//
-//            switch(input){
-//                case 'W':
-//                    moveRow--;
-//                    break;
-//                case 'A':
-//                    moveCol--;
-//                    break;
-//                case 'S':
-//                    moveRow++;
-//                    break;
-//                case 'D':
-//                    moveCol++;
-//                    break;
-//                default:
-//            }
-//
-//            /* 설명. 1. 방이 바뀌는 지 판별 */
-//            /* 필기. 현재 위치해 있는 방이 어딨는지 판별하고, 방 바꾸기만 하면 될 듯.
-//             *  바꾸면 위치 초기화만 해주기.
-//             *  방을 바꿀 떄 조금 더 예쁘게 하는 방법? map을 이용하면 좋나?
-//             * */
+        ps.initMap("MasterRoom");
+        /* 설명. 움직일 위치 받을 변수 input */
+        char input;
+
+        /* 2. 시작. 종료 시 command 지정해야함 */
+        while(true) {
+            /* 설명. 입력받기(대문자 판별) */
+            input = sc.next().toUpperCase().charAt(0);
+
+            if(input == 'Q') {
+                System.exit(0);
+            }
+
+            switch (input) {
+                case 'W':
+                    ps.movePlayer('W');
+                    break;
+                case 'A':
+                    ps.movePlayer('A');
+                    break;
+                case 'S':
+                    ps.movePlayer('S');
+                    break;
+                case 'D':
+                    ps.movePlayer('D');
+                    break;
+                default:
+            }
+
+            ps.writeMap();
+        }
+            /* 필기. 현재 위치해 있는 방이 어딨는지 판별하고, 방 바꾸기만 하면 될 듯.
+             *  바꾸면 위치 초기화만 해주기.
+             *  방을 바꿀 떄 조금 더 예쁘게 하는 방법? map을 이용하면 좋나?
+            * */
 //            if(printMap[currentRow][currentCol] == '1'){
 //                /* 설명. 방의 좌표 값에 따른 커맨드인지 판별 (상, 하, 좌, 우 순)*/
 //                if(currentCol == 5 && currentRow == 1 && moveRow == -1){
@@ -102,3 +94,4 @@ public class Application {
 
     }
 }
+

@@ -1,15 +1,15 @@
 package org.twovarchar.violoetGoblin.Room;
 
 public class HallwayRoom implements Room {
-    private static int floor = -1;
-    private static char roomState = 'c';
+    private int floor = -1;
+    private char roomState = 'c';
 
-    public static char getRoomState() {
+    public char getRoomState() {
         return roomState;
     }
 
-    public static void setRoomState(char roomState) {
-        HallwayRoom.roomState = roomState;
+    public void setRoomState(char roomState) {
+        this.roomState = roomState;
     }
 
     public int getFloor() {
@@ -17,7 +17,7 @@ public class HallwayRoom implements Room {
     }
 
     public void setFloor(int floor) {
-        HallwayRoom.floor = floor;
+        this.floor = floor;
     }
 
     @Override
@@ -34,21 +34,14 @@ public class HallwayRoom implements Room {
                 }
                 /* 설명. 테두리 설정 */
                 if(i==0 || j==0 || i== mapSizeC -1 || j == mapSizeC -1){
-                    setRoom[i][j] = "*";
+                    setRoom[i][j] = "#";
                 }
+                else
+                    setRoom[i][j] = "*";
             }
             System.out.println();
         }
         return setRoom;
     }
 
-    @Override
-    public void printMap(String[][] map) {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
-    }
 }

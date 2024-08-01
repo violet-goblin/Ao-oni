@@ -3,13 +3,13 @@ package org.twovarchar.violoetGoblin.Room.Right;
 import org.twovarchar.violoetGoblin.Room.RightRoom;
 
 public class TortureRoom extends RightRoom {
-    private static int floor = -1;
+    private int floor = -1;
 
-    public static int getFloor() {
+    public int getFloor() {
         return floor;
     }
 
-    public static void setFloor(int floor) {
-        TortureRoom.floor = floor;
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 }
