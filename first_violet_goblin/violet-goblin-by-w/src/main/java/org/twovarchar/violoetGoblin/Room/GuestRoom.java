@@ -35,8 +35,10 @@ public class GuestRoom implements Room {
                 }
                 /* 설명. 테두리 설정 */
                 if(i==0 || j==0 || i== mapSizeC -1 || j == mapSizeC -1){
-                    setRoom[i][j] = "*";
+                    setRoom[i][j] = "#";
                 }
+                else
+                    setRoom[i][j] = "*";
             }
             System.out.println();
         }
