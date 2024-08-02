@@ -3,7 +3,7 @@ package org.twovarchar.violoetGoblin.Room.Left;
 import org.twovarchar.violoetGoblin.Room.LeftRoom;
 
 public class LaboratoryRoom extends LeftRoom {
-    private int floor = -1;
+    private int floor = 0;
 
     public int getFloor() {
         return floor;

@@ -1,7 +1,7 @@
 package org.twovarchar.violoetGoblin.Room;
 
 public class HallwayRoom implements Room {
-    private int floor = -1;
+    private int floor = 0;
     private char roomState = 'c';
 
     public char getRoomState() {
@@ -28,7 +28,7 @@ public class HallwayRoom implements Room {
         for(int i=0; i<mapSizeC; i++){
             for(int j=0; j<mapSizeC; j++){
                 /* 설명. 상좌우에 출구 생성 */
-                if((i == mapSizeC / 2 && j == 0) || (i == 0 && j == mapSizeC / 2) || (i == mapSizeC -1 && j == mapSizeC / 2)  ){
+                if((i == 0 && j == mapSizeC / 2) || ((i == mapSizeC / 2) && (j == 0)) || ((i == mapSizeC /2) && (j == mapSizeC -1))  ){
                     setRoom[i][j] = "O";
                     continue;
                 }

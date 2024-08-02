@@ -35,7 +35,7 @@ public class AtticRoom implements Room {
         for(int i=0; i<mapSizeC; i++){
             for(int j=0; j<mapSizeC; j++){
                 /* 설명. 하, 우에 출구 생성 */
-                if((i== mapSizeC / 2 && j== mapSizeC -1) || (i == mapSizeC -1 && j == mapSizeC / 2)){
+                if(((i== mapSizeC / 2) && (j== mapSizeC -1)) || ((i == mapSizeC -1) && (j == mapSizeC / 2))){
                     setRoom[i][j] = "O";
                     continue;
                 }

@@ -339,47 +339,41 @@ public class PlayerRepository {
         int checkY = getCurY() + changeIndex[1];
 
         /* 설명. 1. 출구에서 , (방 옮겨다니는 것 수정) */
-        if (currentMap[getCurX()][getCurY()].equals("O")) {
+        if (currentMap[getCurY()][getCurX()].equals("O")) {
             /* 설명. index가 0미만, mapSize이상일 때 제대로 된 키 입력 했다고 볼 수 있음 */
             if (checkX == -1) {
                 /* 설명. 왼쪽방으로 바꾸고 초기 위치 지정 */
                 for (String key : myRoom.keySet()) {
                     if (myRoom.get(key).getFloor() == currentRoom.getFloor()) {
-                        if (currentRoom.getRoomState() == 'c' && myRoom.get(key).getRoomState() == 'l') {
+                        if ((currentRoom.getRoomState() == 'c' && myRoom.get(key).getRoomState() == 'l') || (currentRoom.getRoomState() == 'r' && myRoom.get(key).getRoomState() == 'c')) {
                             updateState(key);
-                        } else if (currentRoom.getRoomState() == 'l' && myRoom.get(key).getRoomState() == 'c') {
-                            updateState(key);
+                            /* 설명. 여기서부터 초기 위치 지정 */
+                            setCurX(Room.mapSize - 1);
+                            setCurY(Room.mapSize / 2);
+                            System.out.println(key);
+                            break;
                         }
-                        /* 설명. 여기서부터 초기 위치 지정 */
-                        setCurX(Room.mapSize - 1);
-                        setCurY(Room.mapSize / 2);
-                        System.out.println(key);
-                        break;
                     }
                 }
             } else if (checkX == Room.mapSize) {
                 /* 설명. 오른방으로 바꾸고 초기 위치 지정 */
                 for (String key : myRoom.keySet()) {
                     if (myRoom.get(key).getFloor() == currentRoom.getFloor()) {
-                        if (currentRoom.getRoomState() == 'l' && myRoom.get(key).getRoomState() == 'c') {
+                        if ((currentRoom.getRoomState() == 'l' && myRoom.get(key).getRoomState() == 'c') || (currentRoom.getRoomState() == 'c' && myRoom.get(key).getRoomState() == 'r')) {
                             updateState(key);
-                        } else if (currentRoom.getRoomState() == 'c' && myRoom.get(key).getRoomState() == 'r') {
-                            updateState(key);
+                            /* 설명. 여기서부터 초기 위치 지정 */
+                            setCurX(0);
+                            setCurY(Room.mapSize / 2);
+                            System.out.println(key);
+                            break;
                         }
-                        /* 설명. 여기서부터 초기 위치 지정 */
-                        setCurX(0);
-                        setCurY(Room.mapSize / 2);
-                        System.out.println(key);
-                        break;
                     }
                 }
             } else if (checkY == Room.mapSize) {
                 /* 설명. 아래방으로 바꾸고 초기 위치 지정 */
                 for (String key : myRoom.keySet()) {
-                    if (myRoom.get(key).getFloor() == currentRoom.getFloor() - 1 && myRoom.get(key).getRoomState() == 'c') {
-                        currentRoom = myRoom.get(key);
-                        currentMap = myMap.get(key);
-                        currentMapKey = key;
+                    if ((myRoom.get(key).getFloor() == (currentRoom.getFloor() - 1)) && (myRoom.get(key).getRoomState() == 'c')) {
+                        updateState(key);
                         /* 설명. 여기서부터 초기 위치 지정 */
                         setCurX(Room.mapSize / 2);
                         setCurY(0);
@@ -392,10 +386,8 @@ public class PlayerRepository {
             } else if (checkY == -1) {
                 /* 설명. 위방으로 바꾸고 초기 위치 지정*/
                 for (String key : myRoom.keySet()) {
-                    if (myRoom.get(key).getFloor() == currentRoom.getFloor() + 1 && myRoom.get(key).getRoomState() == 'c') {
-                        currentRoom = myRoom.get(key);
-                        currentMap = myMap.get(key);
-                        currentMapKey = key;
+                    if ((myRoom.get(key).getFloor() == currentRoom.getFloor() + 1) && (myRoom.get(key).getRoomState() == 'c')) {
+                        updateState(key);
                         /* 설명. 여기서부터 초기 위치 지정 */
                         setCurX(Room.mapSize / 2);
                         setCurY(Room.mapSize - 1);
@@ -415,7 +407,7 @@ public class PlayerRepository {
         /* 설명. 2. 벽에 부딪힐 경우*/
         System.out.println("x: " + checkX + " y: " + checkY);
         if (checkX == 0 || checkY == 0 || checkX == Room.mapSize - 1 || checkY == Room.mapSize - 1) {
-            if (currentMap[checkX][checkY].equals("O")) {
+            if (currentMap[checkY][checkX].equals("O")) {
                 System.out.println("출구로 향하는 중");
                 setCurX(checkX);
                 setCurY(checkY);
@@ -430,84 +422,3 @@ public class PlayerRepository {
         return 3;
     }
 }
-//
-//    public int checkPlayerState(int[] changeIndex) {
-//        int checkX = getCurX() + changeIndex[0];
-//        int checkY = getCurY() + changeIndex[1];
-//
-//        /* 설명. 출구인지 확인 */
-//        if (isExit(getCurX(), getCurY())) {
-//            handleRoomChange(checkX, checkY);
-//            return 1;
-//        }
-//
-//        System.out.println("출구에서 통과 ");
-//        if (isWallCollision(checkX, checkY)) {
-//            if (isExit(checkX, checkY)) {
-//                System.out.println("출구로 향하는 중");
-//                setCurX(checkX);
-//                setCurY(checkY);
-//                return 3;
-//            }
-//            return 2;
-//        }
-//
-//        System.out.println("벽에 부딪혀서 통과");
-//        setCurX(checkX);
-//        setCurY(checkY);
-//        return 3;
-//    }
-//
-//    private boolean isExit(int x, int y) {
-//        return currentMap[x][y].equals("O");
-//    }
-//
-//    private boolean isWallCollision(int x, int y) {
-//        return x == 0 || y == 0 || x == Room.mapSize - 1 || y == Room.mapSize - 1;
-//    }
-//
-//    /* 설명. 방 바꾸는 것 관리하는 메소드*/
-//    private void handleRoomChange(int checkX, int checkY) {
-//        if (checkX == -1) {
-//            changeRoom('l', Room.mapSize - 1, Room.mapSize / 2);
-//        } else if (checkX == Room.mapSize) {
-//            changeRoom('r', 0, Room.mapSize / 2);
-//        } else if (checkY == -1) {
-//            changeRoom('d', Room.mapSize / 2, 0);
-//        } else if (checkY == Room.mapSize) {
-//            changeRoom('u', Room.mapSize / 2, Room.mapSize - 1);
-//        } else if (checkX == 1 || checkY == 1 || checkX == Room.mapSize - 2 || checkY == Room.mapSize - 2) {
-//            setCurX(checkX);
-//            setCurY(checkY);
-//        }
-//    }
-//
-//    private void changeRoom(char direction, int newX, int newY) {
-//        for (String key : myRoom.keySet()) {
-//            Room targetRoom = myRoom.get(key);
-//            if (targetRoom.getFloor() == currentRoom.getFloor() && isValidRoomChange(targetRoom, direction)) {
-//                currentMap = myMap.get(key);
-//                currentMapKey = key;
-//                currentRoom = targetRoom;
-//                setCurX(newX);
-//                setCurY(newY);
-//                break;
-//            }
-//        }
-//    }
-//
-//    private boolean isValidRoomChange(Room targetRoom, char direction) {
-//        char currentState = currentRoom.getRoomState();
-//        char targetState = targetRoom.getRoomState();
-//        if (direction == 'l') {
-//            return (currentState == 'c' && targetState == 'l') || (currentState == 'r' && targetState == 'c');
-//        } else if (direction == 'r') {
-//            return (currentState == 'l' && targetState == 'c') || (currentState == 'c' && targetState == 'r');
-//        } else if (direction == 'd') {
-//            return targetRoom.getFloor() == currentRoom.getFloor() - 1 && targetState == 'c';
-//        } else if (direction == 'u') {
-//            return targetRoom.getFloor() == currentRoom.getFloor() + 1 && targetState == 'c';
-//        }
-//        return false;
-//    }
-

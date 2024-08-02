@@ -20,7 +20,7 @@ public class LeftRoom implements Room {
         for(int i=0; i<mapSizeL; i++){
             for(int j=0; j<mapSizeL; j++){
                 /* 설명. 오른쪽에 출구 생성 */
-                if(i== mapSizeL-1 && j== mapSizeL / 2){
+                if((i== (mapSizeL/ 2)) && (j== (mapSizeL -1))){
                     setRoom[i][j] = "O";
                     continue;
                 }
