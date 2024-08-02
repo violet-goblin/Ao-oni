@@ -19,7 +19,7 @@ public class RightRoom implements Room{
 
         for(int i=0; i<mapSizeR; i++){
             for(int j=0; j<mapSizeR; j++){
-                /* 설명. 오른쪽에 출구 생성 */
+                /* 설명. 왼쪽에 출구 생성 */
                 if(i== 0 && j== mapSizeR / 2){
                     setRoom[i][j] = "O";
                     continue;

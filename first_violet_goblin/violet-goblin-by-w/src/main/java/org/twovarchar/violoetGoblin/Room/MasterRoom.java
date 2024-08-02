@@ -2,7 +2,8 @@ package org.twovarchar.violoetGoblin.Room;
 
 public class MasterRoom implements Room {
 
-    int floor = 1;
+    private int floor = 1;
+    private char roomState = 'c';
 
     public int getFloor() {
         return floor;
@@ -14,12 +15,12 @@ public class MasterRoom implements Room {
 
     @Override
     public char getRoomState() {
-        return 0;
+        return roomState;
     }
 
     @Override
-    public void setRoomState(char state) {
-
+    public void setRoomState(char roomState) {
+        this.roomState = roomState;
     }
 
     @Override
