@@ -24,17 +24,6 @@ public class PlayerService {
 
     /* 설명. 커맨드에 따른 플레이어 위치 옮기기 */
     public void movePlayer(char cmd) {
-        System.out.println(pr.checkPlayerState(pr.controlPlayer(cmd)));
-//        switch(pr.checkPlayerState(pr.controlPlayer(cmd))){
-//            /* 설명. 1. 출구에서 방향에 따른 똑같은 방향키를 누를 경우 */
-//            case 1:
-//                break;
-//            /* 설명. 2. 벽에 부딪힐 경우 */
-//            case 2:
-//                break;
-//            /* 설명. 3. 정상 작동 */
-//            case 3:
-//                break;
-//        }
+        pr.checkPlayerState(pr.controlPlayer(cmd));
     }
 }
