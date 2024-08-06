@@ -17,9 +17,9 @@ public class PlayerService {
         pr.printMap(mapName);
     }
 
-    public void writeMap() {
+    public boolean writeMap() {
         /* 설명. 2. 지속적으로 맵 출력 */
-        pr.printMap(pr.getCurrentMapKey());
+        return pr.printMap(pr.getCurrentMapKey());
     }
 
     /* 설명. 커맨드에 따른 플레이어 위치 옮기기 */

@@ -10,9 +10,8 @@ public class Aooni {
     private static int aooniCurX;
     private static int aooniCurY;
 
-    private static int[] dx = {0,1,0,-1};
-    private static int[] dy = {1,0,-1,0};
-    private static int[][] board = new int[Room.mapSize][Room.mapSize];
+    private static final int[] dx = {0,1,0,-1};
+    private static final int[] dy = {1,0,-1,0};
     private static int[][] visited = new int[Room.mapSize][Room.mapSize];
     private static ArrayDeque<int[]> queue = new ArrayDeque<>();
 
@@ -36,51 +35,96 @@ public class Aooni {
     }
 
     public static boolean crashPlayer(){
-        bfs(getAooniCurX(), getAooniCurY());
+//        bfs(getAooniCurX(), getAooniCurY());
+//
+//        if(visited[PlayerRepository.getPlayerCurY()][PlayerRepository.getPlayerCurX()] == 1){
+//            return false;
+//        }
 
-        if(visited[PlayerRepository.getPlayerCurY()-1][PlayerRepository.getPlayerCurX()-1] == 1){
-            return false;
-        }
+        int playerX = PlayerRepository.getPlayerCurX();
+        int playerY = PlayerRepository.getPlayerCurY();
 
-        for(int i = 0; i<visited.length; i++){
-            for(int j = 0; j<visited[i].length; j++){
-                if(visited[i][j] == 1){
-                    /* 설명. 최단 거리 측정 후 거리가 1일 때를 aooni 현재 위치*/
-                    setAooniCurY(i);
-                    setAooniCurX(j);
+        if(bfs(getAooniCurX(), getAooniCurY(), playerX, playerY)){
+            if(visited[playerY][playerX] == 0){
+                return false;
+            }
+
+            int nextX = getAooniCurX();
+            int nextY = getAooniCurY();
+            for(int i=0; i<4; i++){
+                int nx = getAooniCurX() +dx[i];
+                int ny = getAooniCurY() +dy[i];
+                if (isValidMove(nx, ny) && visited[ny][nx] == visited[getAooniCurY()][getAooniCurX()] - 1) {
+                    nextX = nx;
+                    nextY = ny;
                     break;
                 }
             }
-        }
-        /* 설명. 메모리 초기화.*/
-        for(int i=0 ; i<visited.length ; i++){
-            Arrays.fill(visited, 0);
-            Arrays.fill(board, 0);
-            queue.clear();
+
+            setAooniCurX(nextX);
+            setAooniCurY(nextY);
+
+            return true; // 아오오니가 한 칸 이동함
         }
 
-        return true;
+        return false;
     }
 
-    public static void bfs(int sx, int sy) {
-        queue.offer(new int[]{sx, sy});
-        visited[sy][sx] = 1;
-        board[sy][sx] = 0;
+    private static boolean bfs(int startX, int startY, int goalX, int goalY) {
+        visited = new int[Room.mapSize][Room.mapSize];
+        for (int[] row : visited) {
+            Arrays.fill(row, -1);
+        }
+
+        queue.clear();
+        queue.offer(new int[]{startX, startY});
+        visited[startY][startX] = 0;
 
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
             int x = current[0];
             int y = current[1];
+
+            if (x == goalX && y == goalY) {
+                return true; // 목표 위치에 도달
+            }
+
             for (int i = 0; i < 4; i++) {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
-                if (0 <= nx && nx < PlayerRepository.getPlayerCurX() && 0 <= ny && ny < PlayerRepository.getPlayerCurY() && visited[ny][nx] == 0 && board[ny][nx] == 1) {
-                    visited[ny][nx] = visited[y][x] + 1;
-                    board[ny][nx] = 0;
-                    queue.offer(new int[]{nx, ny});
 
+                if (isValidMove(nx, ny) && visited[ny][nx] == -1) {
+                    visited[ny][nx] = visited[y][x] + 1;
+                    queue.offer(new int[]{nx, ny});
                 }
             }
         }
+
+        return false; // 목표 위치에 도달할 수 없음
+    }
+
+    private static boolean isValidMove(int x, int y) {
+        return x >= 0 && x < Room.mapSize && y >= 0 && y < Room.mapSize;
     }
 }
+
+//
+//        for(int i = 0; i<visited.length; i++){
+//            for(int j = 0; j<visited[i].length; j++){
+//                if(visited[i][j] == 1){
+//                    /* 설명. 최단 거리 측정 후 거리가 1일 때를 aooni 현재 위치*/
+//                    setAooniCurY(i);
+//                    setAooniCurX(j);
+//                    break;
+//                }
+//            }
+//        }
+//        /* 설명. 메모리 초기화.*/
+//        for(int i=0 ; i<visited.length ; i++){
+//            Arrays.fill(visited[i], 0);
+//            Arrays.fill(board[i], 0);
+//        }
+//        queue.clear();
+//
+//        return true;
+//    }

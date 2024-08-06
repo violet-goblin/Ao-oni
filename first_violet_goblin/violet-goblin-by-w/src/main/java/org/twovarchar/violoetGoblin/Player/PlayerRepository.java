@@ -12,6 +12,9 @@ import org.twovarchar.violoetGoblin.Room.Right.TortureRoom;
 
 import java.util.HashMap;
 
+import static org.twovarchar.violoetGoblin.Aooni.Aooni.getAooniCurX;
+import static org.twovarchar.violoetGoblin.Aooni.Aooni.getAooniCurY;
+
 
 public class PlayerRepository {
     private final HashMap<String, Room> myRoom = new HashMap<>();
@@ -23,7 +26,7 @@ public class PlayerRepository {
     /* 설명. 플레이어 초기 위치 설정 및 캡슐화 */
     private static int playerCurX = Room.mapSize / 2;
     private static int playerCurY = Room.mapSize - 2;
-    private final Aooni aooni = new Aooni();
+//    private final Aooni aooni = new Aooni();
 
     /* 설명.
      *  아오오니 생성조건 
@@ -107,7 +110,7 @@ public class PlayerRepository {
     }
 
     /* 설명. printMap에 key를 방이 바뀌는 등 연산을 계속 줘야한다. */
-    public void printMap(String key) {
+    public boolean printMap(String key) {
         /* 설명. 깊은 복사*/
         updateState(key);
 
@@ -115,10 +118,21 @@ public class PlayerRepository {
 
         for (int i = 0; i < currentMap.length; i++) {
             System.out.print(" ");
+            /* 설명. 요기가 이상하다.*/
             for (int j = 0; j < currentMap[i].length; j++) {
-                if(liveAoonni&& i== aooni.getAooniCurY() && j == aooni.getAooniCurX()){
+                if(liveAoonni&& i== getAooniCurY() && j == getAooniCurX()){
+                    if(!Aooni.crashPlayer()){
+                        return false;
+                    }
                     System.out.print("A");
                 }
+//                if(liveAoonni){
+//                    if(Aooni.crashPlayer()) {
+//                        if (i == getAooniCurY() && j == getAooniCurX())
+//                            System.out.print("A");
+//                    }
+//                    else return false;
+//                }
                 else if (i == getPlayerCurY() && j == getPlayerCurX()) {
                     System.out.print("P");
                 } else {
@@ -128,8 +142,12 @@ public class PlayerRepository {
             }
             System.out.println();
         }
-
         System.out.println("W: 상, A: 좌, S: 하, D: 우");
+
+        System.out.println(getAooniCurY());
+        System.out.println(getAooniCurX());
+
+        return true;
     }
 
     private void updateState(String key) {
@@ -187,6 +205,10 @@ public class PlayerRepository {
                     liveAoonni = true;
                     /* 설명. 방이 바뀐 시점에  player의 위치는 (0, map.size() -1), map.size() / 2 */
                     setAooniLocation();
+//                    System.out.println(Aooni.getAooniCurX());
+//                    System.out.println("구분");
+//                    System.out.println(Aooni.getAooniCurY());
+
                     System.out.println("----------------------------------\n" +
                                        "----------!watch out!-------------\n" +
                                        "-----ao-oni is coming out!!!!-----\n" +
@@ -213,20 +235,20 @@ public class PlayerRepository {
     private void setAooniLocation() {
         if(getPlayerCurX() != Room.mapSize / 2){
             if(getPlayerCurX() == 0){
-                aooni.setAooniCurX(Room.mapSize - 2);
+                Aooni.setAooniCurX(Room.mapSize - 2);
             }
             else{
-                aooni.setAooniCurX(1);
+                Aooni.setAooniCurX(1);
             }
-            aooni.setAooniCurY(Room.mapSize / 2);
+            Aooni.setAooniCurY(Room.mapSize / 2);
         }else{
             if(getPlayerCurY() == 0){
-                aooni.setAooniCurY(Room.mapSize - 2);
+                Aooni.setAooniCurY(Room.mapSize - 2);
             }
             else{
-                aooni.setAooniCurY(1);
+                Aooni.setAooniCurY(1);
             }
-            aooni.setAooniCurX(Room.mapSize / 2);
+            Aooni.setAooniCurX(Room.mapSize / 2);
         }
         setChangeRoomCount(0);
     }

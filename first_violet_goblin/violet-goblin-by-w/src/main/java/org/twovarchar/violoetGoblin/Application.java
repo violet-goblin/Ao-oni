@@ -45,8 +45,11 @@ public class Application {
                     break;
                 default:
             }
-
-            ps.writeMap();
+            boolean check = ps.writeMap();
+            if(!check){
+                System.out.println("GAME OVER");
+                System.exit(0);
+            }
         }
     }
 }
