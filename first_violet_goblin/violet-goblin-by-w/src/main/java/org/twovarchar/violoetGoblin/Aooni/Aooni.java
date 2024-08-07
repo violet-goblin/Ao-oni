@@ -12,7 +12,8 @@ public class Aooni {
 
     private static final int[] dx = {0,1,0,-1};
     private static final int[] dy = {1,0,-1,0};
-    private static int[][] visited = new int[Room.mapSize][Room.mapSize];
+    private static int[][] visited;
+    private static int[][][] predecessor;
     private static ArrayDeque<int[]> queue = new ArrayDeque<>();
 
     public Aooni() {
@@ -45,6 +46,15 @@ public class Aooni {
         int playerY = PlayerRepository.getPlayerCurY();
 
         if(bfs(getAooniCurX(), getAooniCurY(), playerX, playerY)){
+            System.out.println();
+            for(int i=0; i< visited.length; i++){
+                for(int j=0; j< visited[i].length; j++){
+                    System.out.print(visited[i][j] + " ");
+                }
+                System.out.println();
+            }
+
+
             if(visited[playerY][playerX] == 0){
                 return false;
             }
@@ -72,8 +82,15 @@ public class Aooni {
 
     private static boolean bfs(int startX, int startY, int goalX, int goalY) {
         visited = new int[Room.mapSize][Room.mapSize];
+        predecessor = new int[Room.mapSize][Room.mapSize][2];
+        /* 설명. 방문하지 않은 노드로 만들기 */
         for (int[] row : visited) {
             Arrays.fill(row, -1);
+        }
+        for (int i = 0; i < predecessor.length; i++) {
+            for (int j = 0; j < predecessor.length; j++) {
+                
+            }
         }
 
         queue.clear();
@@ -96,11 +113,20 @@ public class Aooni {
                 if (isValidMove(nx, ny) && visited[ny][nx] == -1) {
                     visited[ny][nx] = visited[y][x] + 1;
                     queue.offer(new int[]{nx, ny});
+                    /* 설명. predecessor 0은 x 1은 y */
+                    predecessor[ny][nx][0] = x;
+                    predecessor[ny][nx][1] = y;
                 }
             }
         }
 
         return false; // 목표 위치에 도달할 수 없음
+    }
+
+    private static boolean back_track(int goalX, int goalY){
+        if(bfs()){
+            
+        }
     }
 
     private static boolean isValidMove(int x, int y) {
