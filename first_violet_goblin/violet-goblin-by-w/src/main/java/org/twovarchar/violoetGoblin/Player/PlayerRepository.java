@@ -114,6 +114,10 @@ public class PlayerRepository {
         /* 설명. 깊은 복사*/
         updateState(key);
 
+
+        if(liveAoonni && !Aooni.crashPlayer()){
+            return false;
+        }
         System.out.println(" ~ " + currentMapKey + " ~\n");
 
         for (int i = 0; i < currentMap.length; i++) {
@@ -121,9 +125,6 @@ public class PlayerRepository {
             /* 설명. 요기가 이상하다.*/
             for (int j = 0; j < currentMap[i].length; j++) {
                 if(liveAoonni&& i== getAooniCurY() && j == getAooniCurX()){
-                    if(!Aooni.crashPlayer()){
-                        return false;
-                    }
                     System.out.print("A");
                 }
 //                if(liveAoonni){
@@ -144,8 +145,8 @@ public class PlayerRepository {
         }
         System.out.println("W: 상, A: 좌, S: 하, D: 우");
 
-        System.out.println(getAooniCurY());
-        System.out.println(getAooniCurX());
+//        System.out.println(getAooniCurY());
+//        System.out.println(getAooniCurX());
 
         return true;
     }

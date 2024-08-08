@@ -45,8 +45,7 @@ public class Application {
                     break;
                 default:
             }
-            boolean check = ps.writeMap();
-            if(!check){
+            if(!ps.writeMap()){
                 System.out.println("GAME OVER");
                 System.exit(0);
             }

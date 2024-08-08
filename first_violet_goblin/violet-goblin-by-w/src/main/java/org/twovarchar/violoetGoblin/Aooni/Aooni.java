@@ -14,7 +14,7 @@ public class Aooni {
     private static final int[] dy = {1,0,-1,0};
     private static int[][] visited;
     private static int[][][] predecessor;
-    private static ArrayDeque<int[]> queue = new ArrayDeque<>();
+    private static final ArrayDeque<int[]> queue = new ArrayDeque<>();
 
     public Aooni() {
     }
@@ -44,40 +44,19 @@ public class Aooni {
 
         int playerX = PlayerRepository.getPlayerCurX();
         int playerY = PlayerRepository.getPlayerCurY();
-
+        int calDis;
         if(bfs(getAooniCurX(), getAooniCurY(), playerX, playerY)){
-            System.out.println();
-            for(int i=0; i< visited.length; i++){
-                for(int j=0; j< visited[i].length; j++){
-                    System.out.print(visited[i][j] + " ");
-                }
-                System.out.println();
-            }
-
-
-            if(visited[playerY][playerX] == 0){
-                return false;
-            }
-
-            int nextX = getAooniCurX();
-            int nextY = getAooniCurY();
-            for(int i=0; i<4; i++){
-                int nx = getAooniCurX() +dx[i];
-                int ny = getAooniCurY() +dy[i];
-                if (isValidMove(nx, ny) && visited[ny][nx] == visited[getAooniCurY()][getAooniCurX()] - 1) {
-                    nextX = nx;
-                    nextY = ny;
-                    break;
-                }
-            }
-
-            setAooniCurX(nextX);
-            setAooniCurY(nextY);
-
-            return true; // 아오오니가 한 칸 이동함
+//            System.out.println("bfs 넘어가기");
+            /* 설명. 아오오니 현 위치 */
+//            System.out.println(getAooniCurX() + " " + getAooniCurY());
+//            System.out.println("back_track 시작");
+            back_track(getAooniCurX(), getAooniCurY(), playerX, playerY);
+            calDis = Math.abs(playerY - getAooniCurY()) + Math.abs(playerX - getAooniCurX());
+            return calDis >= 2;
         }
-
-        return false;
+        else{
+            return false;
+        }
     }
 
     private static boolean bfs(int startX, int startY, int goalX, int goalY) {
@@ -87,9 +66,11 @@ public class Aooni {
         for (int[] row : visited) {
             Arrays.fill(row, -1);
         }
+        /* 설명. 최단 거리 경로 저장 */
         for (int i = 0; i < predecessor.length; i++) {
             for (int j = 0; j < predecessor.length; j++) {
-                
+                predecessor[i][j][0] = -1;
+                predecessor[i][j][1] = -1;
             }
         }
 
@@ -103,6 +84,7 @@ public class Aooni {
             int y = current[1];
 
             if (x == goalX && y == goalY) {
+//                System.out.println("도달");
                 return true; // 목표 위치에 도달
             }
 
@@ -116,17 +98,37 @@ public class Aooni {
                     /* 설명. predecessor 0은 x 1은 y */
                     predecessor[ny][nx][0] = x;
                     predecessor[ny][nx][1] = y;
+//                    System.out.println("저장된 값 x,y순" + predecessor[ny][nx][0] + " " + predecessor[ny][nx][1]);
                 }
             }
         }
-
+//        System.out.println("도달 x");
         return false; // 목표 위치에 도달할 수 없음
     }
 
-    private static boolean back_track(int goalX, int goalY){
-        if(bfs()){
-            
+    /* 설명. 시작점이 골이어야함*/
+    private static void back_track(int startX, int startY, int goalX, int goalY){
+        /* 설명. current_state를 저장하기 위한 변수 */
+//        System.out.println("back_track 함수 안");
+        int tempX = goalX;
+        int tempY = goalY;
+        int ansY, ansX;
+//        System.out.println(predecessor[tempY][tempX][0] != startX);
+//        System.out.println(predecessor[tempY][tempX][1] != startY);
+
+//        System.out.println("조건문 확인");
+//        System.out.println(predecessor[tempY][tempX][0] != startX && predecessor[tempY][tempX][1] != startY);
+        /* 설명. 다음 찾을 location이 startX일 때 tempX는 그 다음값(ansX)이 된다. */
+        while(predecessor[tempY][tempX][0] != startX || predecessor[tempY][tempX][1] != startY){
+            ansY = predecessor[tempY][tempX][1];
+            ansX = predecessor[tempY][tempX][0];
+//            System.out.println("tempX: " + tempX + " tempY: " + tempY);
+            tempY = ansY;
+            tempX = ansX;
         }
+
+        setAooniCurX(tempX);
+        setAooniCurY(tempY);
     }
 
     private static boolean isValidMove(int x, int y) {
